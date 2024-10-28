@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams - CRUD Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #4B1A60;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        .sidebar .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .sidebar .logo img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .sidebar .logo p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #35134A;
+        }
+        .sidebar a img {
+            margin-right: 15px;
+        }
+        .sidebar .menu-items {
+            flex-grow: 1;
+        }
+        .sidebar .logout {
+            margin-top: 40px;
+            padding: 15px 20px;
+            background-color: #35134A;
+            text-align: center;
+        }
+        .sidebar .logout a {
+            display: inline-block;
+            width: 100%;
+            color: white;
+        }
+        .main-content {
+            flex-grow: 1;
+            background-color: #F2F2F2;
+            padding: 20px;
+        }
+
+        /* Specific Teams page styling */
+        .crud-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .crud-container h2 {
+            margin-bottom: 20px;
+        }
+        .crud-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .crud-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .crud-table table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .crud-table th {
+            background-color: #f4f4f4;
+        }
+        .crud-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .crud-actions button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .crud-actions button:hover {
+            background-color: #45a049;
+        }
+        .crud-actions input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        /* Dropdown and Note styling */
+        .game-selection {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .game-selection select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .game-selection p {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo-placeholder.png" alt="Logo Here">
+                <p>Person Name</p>
+            </div>
+
+            <div class="menu-items">
+                <a href="main.html">
+                    <img src="icons/home-icon.png" alt="Home Icon"> Home
+                </a>
+                <a href="members.html">
+                    <img src="icons/members-icon.png" alt="Members Icon"> Members
+                </a>
+                <a href="teams.html" class="active">
+                    <img src="icons/teams-icon.png" alt="Teams Icon"> Teams
+                </a>
+                <a href="activity.html">
+                    <img src="icons/activity-icon.png" alt="Activity Icon"> Activity
+                </a>
+            </div>
+
+            <div class="logout">
+                <a href="logout.html">
+                    <img src="icons/logout-icon.png" alt="Logout Icon"> Log-Out
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="crud-container">
+                <h2>Teams Management</h2>
+
+                <!-- Dropdown for game selection -->
+                <div class="game-selection">
+                    <label for="gameSelect">Games: </label>
+                    <select id="gameSelect">
+                        <option value="game1">Game 1</option>
+                        <option value="game2">Game 2</option>
+                        <option value="game3">Game 3</option>
+                    </select>
+                    <p>Note: Drop down to select game</p>
+                </div>
+
+                <!-- SQL Table Display (Placeholder for now) -->
+                <div class="crud-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Team Name</th>
+                                <th>Members</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Alpha Team</td>
+                                <td>John, Jane, Alex</td>
+                                <td>
+                                    <button>Edit</button>
+                                    <button>Delete</button>
+                                </td>
+                            </tr>
+                            <!-- More rows can be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- CRUD Buttons and Search -->
+                <div class="crud-actions">
+                    <button onclick="addTeam()">Add</button>
+                    <button onclick="updateTeam()">Update</button>
+                    <div>
+                        Search: <input type="text" id="searchBox" placeholder="Search by team name...">
+                    </div>
+                    <button onclick="removeTeam()">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addTeam() {
+            alert("Add Team functionality to be implemented.");
+        }
+
+        function updateTeam() {
+            alert("Update Team functionality to be implemented.");
+        }
+
+        function removeTeam() {
+            alert("Remove Team functionality to be implemented.");
+        }
+    </script>
+
+</body>
+</html>

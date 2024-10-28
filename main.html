@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #4B1A60;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        .sidebar .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .sidebar .logo img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .sidebar .logo p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #35134A;
+        }
+        .sidebar a img {
+            margin-right: 15px;
+        }
+        .sidebar .menu-items {
+            flex-grow: 1;
+        }
+        .sidebar .logout {
+            margin-top: 40px;
+            padding: 15px 20px;
+            background-color: #35134A;
+            text-align: center;
+        }
+        .sidebar .logout a {
+            display: inline-block;
+            width: 100%;
+            color: white;
+        }
+        .main-content {
+            flex-grow: 1;
+            background-color: #F2F2F2;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo-placeholder.png" alt="Logo Here">
+                <p id="usernameDisplay">Person Name</p> <!-- The username will appear here -->
+            </div>
+
+            <div class="menu-items">
+                <a href="main.html">
+                    <img src="icons/home-icon.png" alt="Home Icon"> Home
+                </a>
+                <a href="members.html">
+                    <img src="icons/members-icon.png" alt="Members Icon"> Members
+                </a>
+                <a href="teams.html">
+                    <img src="icons/teams-icon.png" alt="Teams Icon"> Teams
+                </a>
+                <a href="activity.html">
+                    <img src="icons/activity-icon.png" alt="Activity Icon"> Activity
+                </a>
+            </div>
+
+            <div class="logout">
+                <a href="logout.html">
+                    <img src="icons/logout-icon.png" alt="Logout Icon"> Log-Out
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1>Main Frame</h1>
+            <!-- Main content goes here -->
+        </div>
+    </div>
+
+    <script>
+        // Fetch the username from localStorage and display it
+        window.onload = function() {
+            var username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('usernameDisplay').innerText = username;
+            }
+        };
+    </script>
+
+</body>
+</html>
