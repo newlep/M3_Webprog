@@ -151,7 +151,7 @@
             </div>
 
             <div class="logout">
-                <a href="index.html">
+                <a href="logout.html">
                     <img src="icons/logout-icon.png" alt="Logout Icon"> Log-Out
                 </a>
             </div>
@@ -218,6 +218,15 @@
             alert("Remove Member functionality to be implemented.");
         }
     </script>
+        <script>
+            // Fetch the username from localStorage and display it
+            window.onload = function() {
+                var username = localStorage.getItem('username');
+                if (username) {
+                    document.getElementById('usernameDisplay').innerText = username;
+                }
+            };
+        </script>
 
 </body>
 </html>
