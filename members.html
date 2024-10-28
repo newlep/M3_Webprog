@@ -52,6 +52,9 @@
         }
         .sidebar a img {
             margin-right: 15px;
+            width: 64px;  /* Set the width of the icons */
+            height: 64px; /* Set the height of the icons */
+            object-fit: contain; /* Ensures the image is resized proportionally */
         }
         .sidebar .menu-items {
             flex-grow: 1;
@@ -139,7 +142,7 @@
                 <a href="main.html">
                     <img src="assets/icons/home-icon.png" alt="Home Icon"> Home
                 </a>
-                <a href="members.html" class="active">
+                <a href="members.html">
                     <img src="assets/icons/members-icon.png" alt="Members Icon"> Members
                 </a>
                 <a href="teams.html">
@@ -152,7 +155,7 @@
 
             <div class="logout">
                 <a href="logout.html">
-                    <img src="assets/icons/logout-icon.png" alt="Logout Icon"> Log-Out
+                    <img src="icons/logout-icon.png" alt="Logout Icon"> Log-Out
                 </a>
             </div>
         </div>
