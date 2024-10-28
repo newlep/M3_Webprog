@@ -148,7 +148,7 @@
         <div class="sidebar">
             <div class="logo">
                 <img src="logo-placeholder.png" alt="Logo Here">
-                <p>Person Name</p>
+                <p id="usernameDisplay">Person Name</p> <!-- The username will appear here -->
             </div>
 
             <div class="menu-items">
@@ -240,6 +240,16 @@
             alert("Remove Team functionality to be implemented.");
         }
     </script>
+
+<script>
+    // Fetch the username from localStorage and display it
+    window.onload = function() {
+        var username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('usernameDisplay').innerText = username;
+        }
+    };
+</script>
 
 </body>
 </html>
