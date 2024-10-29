@@ -130,14 +130,40 @@
             border: 1px solid #ccc;
         }
     </style>
+        <style>
+            /* Your existing CSS */
+    
+            /* Additional CSS for popup forms */
+            .popup {
+                display: none;
+                padding: 20px;
+                margin-top: 10px;
+                border: 1px solid #ddd;
+                background-color: #f9f9f9;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                z-index: 1;
+            }
+    
+            /* Show popup when its ID is targeted */
+            #addForm:target, #updateForm:target, #removeForm:target {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
 </head>
 <body>
-
     <div class="main-container">
         <div class="sidebar">
             <div class="logo">
                 <img src="assets/icons/logo-placeholder.png" alt="Logo Here">
-                <p id="usernameDisplay">Person Name</p> <!-- The username will appear here -->
+                <p id="usernameDisplay">Person Name</p>
             </div>
 
             <div class="menu-items">
@@ -166,7 +192,7 @@
             <div class="crud-container">
                 <h2>Members Management</h2>
 
-                <!-- SQL Table Display (Placeholder for now) -->
+                <!-- SQL Table Display (Placeholder) -->
                 <div class="crud-table">
                     <table>
                         <thead>
@@ -174,66 +200,96 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Action</th>
+             
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>john@example.com</td>
-                                <td>
-                                    <button>Edit</button>
-                                    <button>Delete</button>
-                                </td>
+                                <td>2020190025</td>
+                                <td>Kurt Keinshen P. Macahilo</td>
+                                <td>kkMacahilo@mcm.edu.ph</td>
+     
                             </tr>
-                            <!-- More rows can be added here dynamically -->
                         </tbody>
                     </table>
                 </div>
 
-                <!-- CRUD Buttons and Search -->
+                <!-- CRUD Buttons with Links to Popups -->
                 <div class="crud-actions">
-                    <button onclick="viewMember()">View</button>
-                    <button onclick="addMember()">Add</button>
-                    <button onclick="updateMember()">Update</button>
-                    <div>
-                        Search: <input type="text" id="searchBox" placeholder="Search by name...">
-                    </div>
-                    <button onclick="removeMember()">Remove</button>
+                    <a href="#addForm"><button type="button">Add</button></a>
+                    <a href="#updateForm"><button type="button">Update</button></a>
+                    <a href="#removeForm"><button type="button">Remove</button></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function viewMember() {
-            alert("View Member functionality to be implemented.");
+ <!-- Pop-up Form for Add Member -->
+ <div id="addForm" class="popup">
+    <h3>Add Member</h3>
+    <form id="addMemberForm">
+        <input type="text" id="addName" placeholder="Enter name" required>
+        <input type="email" id="addEmail" placeholder="Enter email" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="addSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
+
+<!-- Pop-up Form for Update Member -->
+<div id="updateForm" class="popup">
+    <h3>Update Member</h3>
+    <form id="updateMemberForm">
+        <input type="text" id="updateId" placeholder="Enter ID" required>
+        <input type="text" id="updateName" placeholder="Enter new name">
+        <input type="email" id="updateEmail" placeholder="Enter new email">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="updateSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
+
+<!-- Pop-up Form for Remove Member -->
+<div id="removeForm" class="popup">
+    <h3>Remove Member</h3>
+    <form id="removeMemberForm">
+        <input type="text" id="removeId" placeholder="Enter ID" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="removeSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
+
+<script>
+    // Add Member form handling
+    document.getElementById('addMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('addName').value;
+        document.getElementById('addSuccess').innerText = `Successfully added ${name}`;
+    });
+
+    // Update Member form handling
+    document.getElementById('updateMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const id = document.getElementById('updateId').value;
+        document.getElementById('updateSuccess').innerText = `Successfully updated member with ID ${id}`;
+    });
+
+    // Remove Member form handling
+    document.getElementById('removeMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const id = document.getElementById('removeId').value;
+        document.getElementById('removeSuccess').innerText = `Successfully removed member with ID ${id}`;
+    });
+
+    // Display the username from localStorage
+    window.onload = function() {
+        var username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('usernameDisplay').innerText = username;
         }
-
-        function addMember() {
-            alert("Add Member functionality to be implemented.");
-        }
-
-        function updateMember() {
-            alert("Update Member functionality to be implemented.");
-        }
-
-        function removeMember() {
-            alert("Remove Member functionality to be implemented.");
-        }
-    </script>
-
-
-    <script>
-        // Fetch the username from localStorage and display it
-        window.onload = function() {
-            var username = localStorage.getItem('username');
-            if (username) {
-                document.getElementById('usernameDisplay').innerText = username;
-            }
-        };
-    </script>
+    };
+</script>
 
 </body>
 </html>
