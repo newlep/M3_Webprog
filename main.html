@@ -9,7 +9,6 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            
         }
         .main-container {
             display: flex;
@@ -55,9 +54,9 @@
         }
         .sidebar a img {
             margin-right: 15px;
-            width: 64px;  /* Set the width of the icons */
-            height: 64px; /* Set the height of the icons */
-            object-fit: contain; /* Ensures the image is resized proportionally */
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
         }
         .sidebar .menu-items {
             flex-grow: 1;
@@ -74,14 +73,29 @@
             color: white;
         }
         .main-content {
-            flex-grow: 1;
-            background-image: url('assets/icons/main-frame-background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: white;
+    flex-grow: 1;
+    background: linear-gradient(to top, rgba(255, 165, 0, 0.4), rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0)), 
+                url('assets/icons/main-frame-background.jpg');
+    background-size: cover, cover;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        .content-box {
+            max-width: 600px;
             padding: 20px;
-            
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        .content-box h1, .content-box h2 {
+            margin-top: 0;
         }
     </style>
 </head>
@@ -91,7 +105,7 @@
         <div class="sidebar">
             <div class="logo">
                 <img src="assets/icons/logo-placeholder.png" alt="Logo Here">
-                <p id="usernameDisplay">Person Name</p> <!-- The username will appear here -->
+                <p id="usernameDisplay">Person Name</p>
             </div>
 
             <div class="menu-items">
@@ -117,10 +131,11 @@
         </div>
 
         <div class="main-content">
-            <h1>Main Frame</h1>
-            <!-- Main content goes here -->
-            <h2>About us</h2>
-            <p>Founded in 2022, MMCM Azure Pantheons is more than just an organization. It showcases the unwavering spirit of inspiration and the undying passion for esport. Established by student leaders who formerly led the Computer Student Society, this group is dedicated to enhancing the gaming experience to previously unheard-of levels.</p>
+            <div class="content-box">
+                <h1>Mapua Malayan Colleges Mindanao Azure Pantheons</h1>
+                <h2>About us</h2>
+                <p>Founded in 2022, MMCM Azure Pantheons is more than just an organization. It showcases the unwavering spirit of inspiration and the undying passion for esport. Established by student leaders who formerly led the Computer Student Society, this group is dedicated to enhancing the gaming experience to previously unheard-of levels.</p>
+            </div>
         </div>
     </div>
     

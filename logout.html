@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Logout Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,22 +19,30 @@
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            text-align: center;
+        }
+        .login-container img.logo {
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px;
         }
         .login-container h2 {
-            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 20px;
         }
         .login-container label {
             display: block;
+            text-align: left;
             margin-bottom: 8px;
             font-weight: bold;
         }
         .login-container input {
             width: 100%;
-            padding: 10px;
+            padding: 4px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -47,6 +55,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
         .login-container button:hover {
             background-color: #45a049;
@@ -56,6 +65,9 @@
 <body>
 
     <div class="login-container">
+        <!-- Logo at the top of the login box -->
+        <img src="/assets/icons/2.png" alt="Logo" class="logo">
+        
         <h2>Login</h2>
         <form onsubmit="return redirectToMain()">
             <label for="userID">User ID</label>
@@ -70,11 +82,8 @@
 
     <script>
         function redirectToMain() {
-            // Capture the user ID (username)
             var userID = document.getElementById('userID').value;
-            // Store it in localStorage
             localStorage.setItem('username', userID);
-            // Redirect to main.html
             window.location.href = 'main.html';
             return false;  // Prevents actual form submission
         }

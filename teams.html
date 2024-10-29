@@ -33,8 +33,8 @@
         }
         .sidebar .logo img {
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 240px;
+            height: 140px;
         }
         .sidebar .logo p {
             margin-top: 10px;
@@ -148,7 +148,32 @@
     </style>
 </head>
 <body>
+</style>
+<style>
+    /* Your existing CSS */
 
+    /* Additional CSS for popup forms */
+    .popup {
+        display: none;
+        padding: 20px;
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    /* Show popup when its ID is targeted */
+    #addForm:target, #updateForm:target, #removeForm:target {
+        display: block;
+    }
+</style>
     <div class="main-container">
         <div class="sidebar">
             <div class="logo">
@@ -216,35 +241,74 @@
                     </table>
                 </div>
 
-                <!-- CRUD Buttons and Search -->
                 <div class="crud-actions">
-                    <button onclick="addTeam()">Add</button>
-                    <button onclick="updateTeam()">Update</button>
-                    <div>
-                        Search: <input type="text" id="searchBox" placeholder="Search by team name...">
-                    </div>
-                    <button onclick="removeTeam()">Remove</button>
+                    <a href="#addForm"><button type="button">Add</button></a>
+                    <a href="#updateForm"><button type="button">Update</button></a>
+                    <a href="#removeForm"><button type="button">Remove</button></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function addTeam() {
-            alert("Add Team functionality to be implemented.");
-        }
+ <!-- Pop-up Form for Add Member -->
+ <div id="addForm" class="popup">
+    <h3>Add Member</h3>
+    <form id="addMemberForm">
+        <input type="text" id="addName" placeholder="Enter name" required>
+        <input type="email" id="addEmail" placeholder="Enter email" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="addSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
 
-        function updateTeam() {
-            alert("Update Team functionality to be implemented.");
-        }
+<!-- Pop-up Form for Update Member -->
+<div id="updateForm" class="popup">
+    <h3>Update Member</h3>
+    <form id="updateMemberForm">
+        <input type="text" id="updateId" placeholder="Enter ID" required>
+        <input type="text" id="updateName" placeholder="Enter new name">
+        <input type="email" id="updateEmail" placeholder="Enter new email">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="updateSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
 
-        function removeTeam() {
-            alert("Remove Team functionality to be implemented.");
-        }
-    </script>
+<!-- Pop-up Form for Remove Member -->
+<div id="removeForm" class="popup">
+    <h3>Remove Member</h3>
+    <form id="removeMemberForm">
+        <input type="text" id="removeId" placeholder="Enter ID" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="removeSuccess" class="success-message"></p>
+    <a href="#"><button>Close</button></a>
+</div>
 
 <script>
-    // Fetch the username from localStorage and display it
+    // Add Member form handling
+    document.getElementById('addMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('addName').value;
+        document.getElementById('addSuccess').innerText = `Successfully added ${name}`;
+    });
+
+    // Update Member form handling
+    document.getElementById('updateMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const id = document.getElementById('updateId').value;
+        document.getElementById('updateSuccess').innerText = `Successfully updated member with ID ${id}`;
+    });
+
+    // Remove Member form handling
+    document.getElementById('removeMemberForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const id = document.getElementById('removeId').value;
+        document.getElementById('removeSuccess').innerText = `Successfully removed member with ID ${id}`;
+    });
+
+    // Display the username from localStorage
     window.onload = function() {
         var username = localStorage.getItem('username');
         if (username) {
